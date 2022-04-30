@@ -45,23 +45,23 @@ export default {
       active: 0,
       icon: {
         inactive: require("../assets/images/home/tab_01@2x.png"),
-        active: require("../assets/images/home/tab_01_active@2x.png"),
+        active: require("../assets/images/home/tab_01@2x.png"),
       },
       icon2: {
         inactive: require("../assets/images/home/tab_02@2x.png"),
-        active: require("../assets/images/home/tab_02_active@2x.png"),
+        active: require("../assets/images/home/tab_02@2x.png"),
       },
       icon3: {
         inactive: require("../assets/images/home/tab_03@2x.png"),
-        active: require("../assets/images/home/tab_03_active@2x.png"),
+        active: require("../assets/images/home/tab_03@2x.png"),
       },
       icon4: {
-        inactive: require("../assets/images/home/tab_04.png"),
-        active: require("../assets/images/home/tab_04_active@2x.png"),
+        inactive: require("../assets/images/home/tab_04@2x.png"),
+        active: require("../assets/images/home/tab_04@2x.png"),
       },
       icon5: {
         inactive: require("../assets/images/home/tab_05.png"),
-        active: require("../assets/images/home/tab_05_active@2x.png"),
+        active: require("../assets/images/home/tab_05@2x.png"),
       },
     };
   },
