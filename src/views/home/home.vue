@@ -426,12 +426,13 @@ export default {
             height: 9px;
             display: inline-block;
             background: url("~@/assets/images/home/new/miner.png") no-repeat;
-            background-size: 100%;
+            background-size: 100% 100%;
             vertical-align: middle;
             margin-right: 1px;
           }
           .truncate{
             font-size: 9px;
+            color: #FFFFFF;
           }
          
           .address-hash{
