@@ -48,7 +48,7 @@
         <div class="sidebar-box">
           <img
             class="img"
-            src="@/assets/images/common/meta.png"
+            src="@/assets/images/common/new/meta.png"
             alt=""
             @click="goTo"
           />
@@ -57,7 +57,7 @@
             <van-cell is-link>
               <template #title>
                 <div class="flex">
-                  <img src="@/assets/images/common/Home@2x.png" alt="" />
+                  <img src="@/assets/images/common/new/home.png" alt="" />
                   <span class="custom-title">{{ $t("common.Home") }}</span>
                 </div>
               </template>
@@ -65,7 +65,7 @@
             <van-cell is-link>
               <template #title>
                 <div class="flex">
-                  <img src="@/assets/images/common/gongGao.png" alt="" />
+                  <img src="@/assets/images/common/new/gongGao.png" alt="" />
                   <span class="custom-title">{{ $t("common.Notice") }}</span>
                 </div>
               </template>
@@ -73,7 +73,7 @@
             <van-cell is-link>
               <template #title>
                 <div class="flex">
-                  <img src="@/assets/images/common/zhengShu.png" alt="" />
+                  <img src="@/assets/images/common/new/zhengShu.png" alt="" />
                   <span class="custom-title">{{ $t("common.audit") }}</span>
                 </div>
               </template>
@@ -213,7 +213,7 @@ export default {
     // height: 100vh;
     width: 100%;
     .sidebar-box {
-      background: url("~@/assets/images/common/sidebar.png") no-repeat center
+      background: url("~@/assets/images/common/new/sidebar.png") no-repeat center
         center;
       background-size: 100% 100%;
       width: 247px;
@@ -228,7 +228,7 @@ export default {
       .title {
         font-size: 22px;
         font-weight: 400;
-        color: #000000;
+        color: #FFFFFF;
         line-height: 15px;
         margin-left: 26px;
         margin-top: 15px;
@@ -241,7 +241,7 @@ export default {
           padding-top: 24px;
           .van-icon {
             font-weight: 600;
-            color: #333333;
+            color: #83859A;
           }
           img {
             height: 21px;
@@ -252,7 +252,10 @@ export default {
             font-size: 16px;
             font-family: Source Han Sans CN;
             font-weight: 500;
-            color: #333333;
+            color: #FFFFFF;
+          }
+          .flex{
+            align-items: center;
           }
         }
         .van-cell:not(:last-child)::after {
@@ -272,13 +275,13 @@ export default {
           height: 25px;
         }
         .en {
-          background: url("~@/assets/images/common/EN.png") no-repeat center
+          background: url("~@/assets/images/common/new/en.png") no-repeat center
             center;
           background-size: 100% 100%;
           color: #ffffff;
         }
         .zn {
-          background: url("~@/assets/images/common/ZN.png") no-repeat center
+          background: url("~@/assets/images/common/new/zh.png") no-repeat center
             center;
           background-size: 100% 100%;
 
