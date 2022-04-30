@@ -11,7 +11,7 @@
                 $route.name === 'exchangeList'
             "
             class="category flex center"
-            src="@/assets/images/home/home_03.png"
+            src="@/assets/images/home/new/nav_header_menu.png"
             alt
             @click="toggleMenu"
           />
@@ -22,7 +22,7 @@
             alt=""
             @click="back"
           />
-          <img class="logo" src="@/assets/images/home/logo@2x.png" alt="" />
+          <img class="logo" src="@/assets/images/home/new/nav_header_logo.png" alt="" />
           <!-- <div
             class="sel"
             @click="handleChange"
@@ -288,7 +288,7 @@ export default {
     }
   }
   .top_box {
-    background: url("~@/assets/images/home/home_02.png") no-repeat center center;
+    background: url("~@/assets/images/home/new/nav_header_bg.png") no-repeat center center;
     background-size: 100% 100%;
     height: 45px;
     display: flex;
@@ -354,7 +354,7 @@ export default {
     .right {
     }
     .search {
-      background: url("~@/assets/images/home/right_wallet.png") no-repeat center
+      background: url("~@/assets/images/home/new/nav_header_right_wallet.png") no-repeat center
         center;
       background-size: 100% 100%;
       width: 94px;
@@ -363,8 +363,10 @@ export default {
       justify-content: center;
       align-items: center;
       margin-right: 15px;
-      font-size: 13px;
-      color: #002246;
+      font-size: 12px;
+      font-weight: 500;
+      color: #FFFFFF;
+      
       > div {
         width: 100%;
         white-space: nowrap;

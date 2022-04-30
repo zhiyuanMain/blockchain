@@ -16,7 +16,7 @@
         <ul>
           <li>
             <div class="item-top">
-              <img src="@/assets/images/home/list_01.png" alt="" />{{
+              <img src="@/assets/images/home/new/li_list_01.png" alt="" />{{
                 $t("home.list.title1")
               }}
             </div>
@@ -24,7 +24,7 @@
           </li>
           <li>
             <div class="item-top">
-              <img src="@/assets/images/home/list_02.png" alt="" />{{
+              <img src="@/assets/images/home/new/li_list_02.png" alt="" />{{
                 $t("home.list.title2")
               }}
             </div>
@@ -32,7 +32,7 @@
           </li>
           <li class="mt-15">
             <div class="item-top">
-              <img src="@/assets/images/home/list_03.png" alt="" />{{
+              <img src="@/assets/images/home/new/li_list_03.png" alt="" />{{
                 $t("home.list.title3")
               }}
             </div>
@@ -40,7 +40,7 @@
           </li>
           <li class="mt-15">
             <div class="item-top">
-              <img src="@/assets/images/home/list_04.png" alt="" />{{
+              <img src="@/assets/images/home/new/li_list_04.png" alt="" />{{
                 $t("home.list.title4")
               }}
             </div>
@@ -234,7 +234,7 @@ export default {
 </script>
 <style lang="less">
 .home {
-  background: #f4f8fb;
+  // background: #f4f8fb;
   min-height: 100vh;
   margin-bottom: 30px;
   padding-bottom: 50px;
@@ -291,84 +291,106 @@ export default {
     }
   }
   .main {
-    background: url("~@/assets/images/home/home_04.png") no-repeat center center;
-    background-size: 100% 100%;
     min-height: 620px;
     margin: 0px 15px;
     margin-top: -60px;
     .list ul {
-      padding: 20px 8px;
+      background: url("~@/assets/images/home/new/home_ul_bg.png") no-repeat;
+      background-size: 100% 100%;
+      padding: 12px 8px;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      // opacity: 0.8;
       li {
         width: 160px;
-        background: #fefdf9;
+        background: #323F59;
+        background: url("~@/assets/images/home/new/home_li_bg.png") no-repeat;
+        background-size: 100% 100%;
+        box-shadow: 0px 0px 1px 2px #15618C;
         border-radius: 6px;
-        padding: 15px 0;
+        padding: 16px 0;
         .item-top {
           display: flex;
           justify-content: center;
           font-size: 14px;
           font-weight: 500;
-          color: #837f7c;
+          color: #96A4C7;
           align-items: center;
           vertical-align: middle;
           img {
-            height: 18px;
-            width: 18px;
+            height: 14px;
+            width: 14px;
+            padding-right: 2.5px;
           }
         }
         .num {
-          font-size: 18px;
+          font-size: 14px;
           font-weight: normal;
-          color: #2c2924;
+          color: #FFFFFF;
           text-align: center;
-          margin-top: 11px;
+          margin-top: 15px;
         }
       }
     }
-    .more {
-      height: 40px;
-      width: 100%;
-      background: #3a9df2;
-      display: flex;
-      padding: 0 8px;
-      font-size: 12px;
-      font-weight: 400;
-      color: #ffffff;
-      a {
-        color: #ffffff;
-      }
-      .value {
-        justify-content: flex-start;
-        display: flex;
-        align-items: center;
-      }
-      .label {
-        flex: 1;
-        justify-content: flex-end;
-        display: flex;
-        align-items: center;
-      }
-    }
+    
     .Blocks {
+      .more {
+        background: url("~@/assets/images/home/new/home_blocks.png") no-repeat;
+        background-size: 100% 100%;
+        height: 40px;
+        width: 100%;
+        // background: #3a9df2;
+        display: flex;
+        padding: 0 8px;
+        font-size: 12px;
+        font-weight: 400;
+        color: #ffffff;
+        a {
+          color: #ffffff;
+        }
+        .value {
+          justify-content: flex-start;
+          display: flex;
+          align-items: center;
+        }
+        .label {
+          flex: 1;
+          justify-content: flex-end;
+          display: flex;
+          align-items: center;
+        }
+      }
       ul {
-        background: #fff;
         li {
           padding: 10px 8px;
-          border-bottom: 1px solid #e1e1e1;
+          border-bottom: 1px solid;
+          border-image: url("~@/assets/images/home/new/home_border.png") 1 fill repeat  ;
           color: #4a5970;
           position: relative;
           .tile-title {
-            color: #4a5970;
+            color: #FFFFFF;
             font-size: 13px;
             font-weight: 500;
           }
           .tile-transactions {
+            font-size: 10px;
+            color: #96A4C7;
             position: absolute;
             top: 10px;
             right: 20px;
+          }
+          .text-truncate::before{
+            content: ' ';
+            width: 7.5px;
+            height: 7.5px;
+            display: inline-block;
+            background: url("~@/assets/images/home/new/miner.png") no-repeat;
+            background-size: 100%;
+            vertical-align: middle;
+          }
+          .text-truncate{
+            font-size: 9px;
           }
           .d-none {
             position: absolute;
@@ -378,7 +400,7 @@ export default {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: #3a9df2 !important;
+            color: #FFFFFF;
           }
 
           .d-md-inline-block {

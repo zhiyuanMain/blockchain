@@ -141,6 +141,8 @@ export default {
   .page-con {
     min-height: 100vh;
     -webkit-overflow-scrolling: touch;
+    background: url("~@/assets/images/home/new/app_bg.png") repeat-y;
+    background-size: 100%;
     & > div {
       // padding-top: 55px;
     }
