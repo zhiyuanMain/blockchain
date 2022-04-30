@@ -278,14 +278,14 @@ export default {
           background: url("~@/assets/images/common/new/en.png") no-repeat center
             center;
           background-size: 100% 100%;
-          color: #ffffff;
+          color: #FFFFFF;
         }
         .zn {
           background: url("~@/assets/images/common/new/zh.png") no-repeat center
             center;
           background-size: 100% 100%;
 
-          color: #66718d;
+          color: #FFFFFF;
         }
       }
     }
