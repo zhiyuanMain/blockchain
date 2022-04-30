@@ -1,5 +1,5 @@
 {
-  "btn":"get into",
-  "btn1":"Optimizing",
-  "btn2":"In line"
+  "statusReady":"get into",
+  "statusOptimization":"Optimizing",
+  "statusQuene":"In line"
 }

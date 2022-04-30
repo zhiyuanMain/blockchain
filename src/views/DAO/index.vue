@@ -5,49 +5,55 @@
     </div>
     <div class="main">
       <ul>
-        <li class="flex between mb-5">
-          <div class="left_box">
-            <img src="@/assets/images/DAO/icon.png" alt="" />
-            <span class="ml-5">FREE DAO</span>
-            <div>0.0000000 FRD</div>
-          </div>
-          <div class="right_btn01 btn">{{ $t("DAO.btn1") }}</div>
-        </li>
-        <li class=" mb-5">
-          <a href="https://testaaa.tts1.top" class="flex between">
-            <div class="left_box">
-              <img src="@/assets/images/DAO/icon_02.png" alt="" />
-              <span class="ml-5">TTS1 DAO</span>
-              <div>0.0000000 TTS1</div>
+        <li 
+          class=""
+          v-for="(item, idx) in list"
+          :key="idx"
+          :style="{'background-image': `url(${item.bg})`}"
+        >
+          <a :href="item.link ? item.link : 'javascript:void(0)'">
+            <div class="top">
+              <div class="left-box">
+                <img class="img" :src="require(`@/assets/images/DAO/icon_${idx}.png`)" />
+                <span class="title">{{item.title}}</span>
+              </div>
+              <section class="right-box">
+                <cp-btn
+                  :type="item.status === 'statusReady' ? 'primary' : 'warn'"
+                >
+                  {{$t(`DAO.${item.status}`)}}
+                </cp-btn>
+              </section>
             </div>
-            <div class="right_btn02 btn">{{ $t("DAO.btn") }}</div>
+            <div class="bottom">
+              <span>{{item.count}}</span>
+              <span>{{item.subTitle}}</span>
+            </div>
           </a>
-        </li>
-        <li class="flex between">
-          <div class="left_box">
-            <img src="@/assets/images/DAO/icon_03.png" alt="" />
-            <span class="ml-5">Dream DAO</span>
-            <div>0.0000000 DRD</div>
-          </div>
-          <div class="right_btn03 btn">{{ $t("DAO.btn2") }}</div>
-        </li>
-        <li class="flex between">
-          <div class="left_box">
-            <img src="@/assets/images/DAO/icon_04.png" alt="" />
-            <span class="ml-5">FUTURE DAO</span>
-            <div>0.0000000 FTD</div>
-          </div>
-          <div class="right_btn04 btn">{{ $t("DAO.btn2") }}</div>
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script>
+import cpBtn from '../../components/cp-btn.vue';
+
+const resolveImg = idx => require(`@/assets/images/DAO/dao-list-${idx}.png`)
+
+const INIT_LIST = [
+  {index: 0, title: 'FREE DAO', status: 'statusOptimization', count: '0.0000000', subTitle: 'FRD', link: '', bg: resolveImg(1)},
+  {index: 1, title: 'TTSI DAO', status: 'statusReady', count: '0.0000000', subTitle: 'TTS1', link: 'https://testaaa.tts1.top', bg: resolveImg(2)},
+  {index: 2, title: 'METAG DAO', status: 'statusOptimization', count: '0.0000000', subTitle: 'MTG', link: '', bg: resolveImg(3)},
+  {index: 3, title: 'Dream DAO', status: 'statusQuene', count: '0.0000000', subTitle: 'DRD', link: '', bg: resolveImg(4)},
+  {index: 4, title: 'FUTURE DAO', status: 'statusQuene', count: '0.0000000', subTitle: 'FTD', link: '', bg: resolveImg(5)}
+]
 export default {
+  components: { cpBtn },
   name: "DAO",
   data() {
-    return {};
+    return {
+      list: [...INIT_LIST]
+    };
   },
   // components: {
   //   [Tab.name]: Tab,
@@ -75,15 +81,14 @@ export default {
   },
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .DAO {
-  background: #f4f8fb;
   height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  background: url("~@/assets/images/home/new/app_bg.png") repeat-y;
+  background-size: 100%;
   margin-bottom: 30px;
   .banner {
-    background: url("~@/assets/images/crossChain/banner.png") no-repeat center
-      center;
-    background-size: 100% 100%;
     height: 254px;
     h2 {
       padding-top: 74px;
@@ -94,90 +99,61 @@ export default {
     }
   }
   .main {
-    background: url("~@/assets/images/crossChain/crossChain_01.png") no-repeat
-      center center;
     background-size: 100% 100%;
     min-height: 682px;
     margin: 0px 15px;
     margin-top: -140px;
     padding: 15px 1px;
     ul {
-      li:nth-child(1) {
-        background: url("~@/assets/images/DAO/DAO_01.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 100px;
-      }
-      li:nth-child(2) {
-        background: url("~@/assets/images/DAO/DAO_02.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 100px;
-      }
-      li:nth-child(3) {
-        background: url("~@/assets/images/DAO/DAO_03.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 100px;
-      }
-      li:nth-child(4) {
-        background: url("~@/assets/images/DAO/DAO_04.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 100px;
-      }
-      .left_box {
-        margin: 15px 0 0 21px;
-        color: #ffffff;
-        font-size: 19px;
-        img {
-          height: 22px;
-          width: 22px;
-          vertical-align: middle;
+      li {
+        height: 86px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background-size: cover;
+
+        > a {
+          display: block;
+          padding: 15px 10px;
+          color: #fff;
         }
-        > div {
-          color: #fefefe;
-          margin-top: 16px;
+
+        .top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+
+          .left-box {
+            display: flex;
+            .img {
+              display: block;
+              width: 23px;
+              height: 23px;
+              margin-right: 5px;
+            }
+
+            .title {
+              font-size: 20px;
+              font-weight: bold;
+            }
+          }
+
+          .right-box {
+             .cp-btn-container {
+              width: 70px;
+              height: 30px;
+              line-height: 30px;
+            }
+          }
         }
-      }
-      .btn {
-        margin: 15px 15px 0;
-        font-weight: 500;
-        font-size: 14px;
-        text-align: center;
-        line-height: 26px;
-      }
-      .right_btn01 {
-        background: url("~@/assets/images/DAO/btn_01.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 26px;
-        width: 66px;
-        color: #093698;
-      }
-      .right_btn02 {
-        background: url("~@/assets/images/DAO/btn_02.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 26px;
-        width: 66px;
-        color: #1c2403;
-      }
-      .right_btn03 {
-        background: url("~@/assets/images/DAO/btn_03.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 26px;
-        width: 66px;
-        color: #29030a;
-      }
-      .right_btn04 {
-        background: url("~@/assets/images/DAO/btn_04.png") no-repeat center
-          center;
-        background-size: 100% 100%;
-        height: 26px;
-        width: 66px;
-        color: #29030a;
+
+        .bottom {
+          font-size: 20px;
+
+          span {
+            margin-right: 8px;
+          }
+        }
       }
     }
   }

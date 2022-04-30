@@ -1,5 +1,5 @@
 {
-  "btn":"進入",
-  "btn1":"優化中",
-  "btn2":"排隊中"
+  "statusReady":"進入",
+  "statusOptimization":"優化中",
+  "statusQuene":"排隊中"
 }

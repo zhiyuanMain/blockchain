@@ -41,6 +41,7 @@ import {
 import MHeader from './m-header.vue'
 import NavHeader from './nav-header.vue'
 import MFooter from './footer.vue'
+import CPBtn from './cp-btn.vue'
 
 Vue.use(Icon);
 Vue.prototype.$toast = Toast
@@ -57,6 +58,7 @@ Vue.use(Sticky)
 Vue.component('m-header', MHeader)
 Vue.component('nav-header', NavHeader)
 Vue.component('m-footer', MFooter)
+Vue.component('cp-btn', CPBtn)
 
 Vue.prototype.$dialog = Dialog
 
