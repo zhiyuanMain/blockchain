@@ -1,0 +1,23 @@
+{
+  "exChange":"EXCHANGE",
+  "volume":"trading volume",
+  "trade":"Transaction flow pool",
+  "num":"quantity",
+  "buy":"purchase",
+  "sale":"sell out",
+  "wallet":"Wallet balance",
+  "Turnover":"Estimated turnover",
+  "submit":"confirm",
+  "exchange-record":"Exchange record",
+  "success":"success",
+  "Total":"Total",
+  "Destroy":"Destroy",
+  "circulation":"circulation",
+  "mechanism":"mechanism",
+  "Exchange_amplitude":"Exchange amplitude",
+  "Ecological_Application":"EcologicalApplication",
+  "extreme_deflation":"extreme deflation",
+  "token":"Liberty City rights token",
+  "tab1":"Transaction pair \ntransaction amount",
+  "tab2":"Latest price"
+}

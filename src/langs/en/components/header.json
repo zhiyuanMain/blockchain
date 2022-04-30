@@ -1,0 +1,25 @@
+{
+    "home": "Home",
+    "my-mining": "My Mining ",
+    "about-us": "About Us",
+    "profit":"Output Calculator",
+    "utils":"Toolkit",
+    "bf":"Bithumb Family Intro",
+    "buy-custom":"Purchase",
+    "buy-default":"Basic plan",
+    "buy-backbuy":"Repurchase protection plan",
+    "lang":"Language",
+    "account":"Account",
+    "films":[
+        {
+            "title":"Purchase101 ",
+            "label":"Quick Guide to Bmining Purchase",
+            "src":"https://www.youtube.com/watch?v=QeLrxjMnLqI"
+        },
+        {
+            "title":"Turbo 101 ",
+            "label":"Quick Guide to Increasing Profits",
+            "src":"https://www.youtube.com/watch?v=jzlq-9vvUBg"
+        }
+    ]
+}

@@ -1,0 +1,813 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": false,
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "who",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "startPrice",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "usdtAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "Buy",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": false,
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "poolId",
+				"type": "uint256"
+			}
+		],
+		"name": "CreatPool",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": false,
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "who",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "startPrice",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "usdtAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "Sell",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [{
+			"internalType": "address",
+			"name": "",
+			"type": "address"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+			"internalType": "address",
+			"name": "newOwner",
+			"type": "address"
+		}],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "_tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_pricePerUnit",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amountPerUint",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenReserve",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_marketAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_terminalAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_buyFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_marketRatio",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_terminalRatio",
+				"type": "uint256"
+			}
+		],
+		"name": "createPool",
+		"outputs": [{
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "_tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenReserve",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_usdtReserve",
+				"type": "uint256"
+			}
+		],
+		"name": "addLiquidityToPool",
+		"outputs": [{
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "swapUSDTToToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "swapTokenToUSDT",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+			"internalType": "address",
+			"name": "tokenAddress",
+			"type": "address"
+		}],
+		"name": "withdrawFee",
+		"outputs": [{
+			"internalType": "uint256",
+			"name": "",
+			"type": "uint256"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+			"internalType": "address",
+			"name": "tokenAddress",
+			"type": "address"
+		}],
+		"name": "viewFeeAmount",
+		"outputs": [{
+			"internalType": "uint256",
+			"name": "",
+			"type": "uint256"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_pricePerUnit",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amountPerUint",
+				"type": "uint256"
+			}
+		],
+		"name": "setPriceAndMinUnit",
+		"outputs": [{
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "sellOpen",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "buyOpen",
+				"type": "bool"
+			}
+		],
+		"name": "setSwitch",
+		"outputs": [{
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "maxBuy",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "maxSell",
+				"type": "uint256"
+			}
+		],
+		"name": "setMaxBuySell",
+		"outputs": [{
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "buyFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "marketRatio",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "terminalRatio",
+				"type": "uint256"
+			}
+		],
+		"name": "setBuyFee",
+		"outputs": [{
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "marketAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "terminalAddress",
+				"type": "address"
+			}
+		],
+		"name": "setAddress",
+		"outputs": [{
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		}],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "getAmountOfUSDTIn",
+		"outputs": [{
+			"internalType": "uint256",
+			"name": "",
+			"type": "uint256"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "getAmountOfUSDTOut",
+		"outputs": [{
+			"internalType": "uint256",
+			"name": "",
+			"type": "uint256"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+			"internalType": "address",
+			"name": "token",
+			"type": "address"
+		}],
+		"name": "getPrice",
+		"outputs": [{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+			"internalType": "address",
+			"name": "tokenAddress",
+			"type": "address"
+		}],
+		"name": "getSwapPoolByTokenAddress",
+		"outputs": [{
+			"components": [{
+					"internalType": "uint256",
+					"name": "poolId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "tokenAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "pricePerUnit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "amountPerUint",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "currentPricePerUnit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxBuy",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxSell",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokenReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "usdtReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "buyFee",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "terminalAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "terminalReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "terminalRatio",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "marketAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "marketReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "marketRatio",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bool",
+					"name": "sellOpen",
+					"type": "bool"
+				},
+				{
+					"internalType": "bool",
+					"name": "buyOpen",
+					"type": "bool"
+				}
+			],
+			"internalType": "struct MetaSwapV2.SwapPool",
+			"name": "",
+			"type": "tuple"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [{
+			"internalType": "uint256",
+			"name": "id",
+			"type": "uint256"
+		}],
+		"name": "getSwapPoolById",
+		"outputs": [{
+			"components": [{
+					"internalType": "uint256",
+					"name": "poolId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "tokenAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "pricePerUnit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "amountPerUint",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "currentPricePerUnit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxBuy",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxSell",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokenReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "usdtReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "buyFee",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "terminalAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "terminalReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "terminalRatio",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "marketAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "marketReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "marketRatio",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bool",
+					"name": "sellOpen",
+					"type": "bool"
+				},
+				{
+					"internalType": "bool",
+					"name": "buyOpen",
+					"type": "bool"
+				}
+			],
+			"internalType": "struct MetaSwapV2.SwapPool",
+			"name": "",
+			"type": "tuple"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "allSwapPools",
+		"outputs": [{
+			"components": [{
+					"internalType": "uint256",
+					"name": "poolId",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "tokenAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "pricePerUnit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "amountPerUint",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "currentPricePerUnit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxBuy",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxSell",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "tokenReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "usdtReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "buyFee",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "terminalAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "terminalReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "terminalRatio",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "marketAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "marketReserve",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "marketRatio",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bool",
+					"name": "sellOpen",
+					"type": "bool"
+				},
+				{
+					"internalType": "bool",
+					"name": "buyOpen",
+					"type": "bool"
+				}
+			],
+			"internalType": "struct MetaSwapV2.SwapPool[]",
+			"name": "",
+			"type": "tuple[]"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPoolList",
+		"outputs": [{
+			"internalType": "uint256[]",
+			"name": "",
+			"type": "uint256[]"
+		}],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

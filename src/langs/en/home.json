@@ -1,0 +1,15 @@
+{
+   
+  "list":{
+    "title1":"Total transactions",
+    "title2":"Total blocks",
+    "title3":"Average block time",
+    "title4":"Wallet addresses"
+  },
+  "Blocks":{
+    "more":"MORE",
+    "kuang_gong":"miner",
+    "change":"0transactions   18seconds ago"
+
+  }
+}

@@ -1,0 +1,145 @@
+
+.flex {
+  display: flex;
+  // 行
+  &.row {
+    flex-direction: row;
+  }
+  // 列
+  &.column {
+    flex-direction: column;
+  }
+  // 靠底
+  &.bottom{
+    align-items: flex-end;
+  }
+  // 靠右
+  &.right {
+   justify-content: flex-end;
+  //  align-items: flex-end;
+  }
+  // 左右垂直 居中
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+  // 左右居中
+  &.center-h {
+    justify-content: center;
+  }
+  // 崔志居中
+  &.center-v {
+    align-items: center;
+  }
+  // 分散排列
+  &.between {
+    justify-content: space-between;
+  }
+  &-none {
+    flex: none;
+  }
+}
+
+// flex 最小flex-1 最大flex-12  flex:1
+.generate-flexs(12);
+.generate-flexs(@n, @i: 1) when (@i <= @n) {
+  .flex-@{i} {
+    flex: @i;
+  }
+  .generate-flexs(@n, (@i+1));
+}
+
+//外边距 最小ml-5  最大ml-60  加5  margin-left
+//外边距 最小mr-5  最大mr-60  加5  margin-right
+//外边距 最小mt-5  最大mt-60  加5  margin-top
+//外边距 最小mb-5  最大mb-60  加5  margin-bottom
+//外边距 最小md-5  最大md-60  加5  margin
+.generate-mas(60);
+.generate-mas(@n, @i: 5) when (@i <= @n) {
+  .ml-@{i} {
+    margin-left: 0px + @i;
+  }
+  .mr-@{i} {
+    margin-right: 0px + @i;
+  }
+  .mt-@{i} {
+    margin-top: 0px + @i;
+  }
+  .mb-@{i} {
+    margin-bottom: 0px + @i;
+  }
+  .m-@{i} {
+    margin: 0px + @i;
+  }
+  .generate-mas(@n, (@i+5));
+}
+
+//内边距 最小pl-5  最大pl-60  加5  padding-left
+//内边距 最小pr-5  最大pr-60  加5  padding-right
+//内边距 最小pt-5  最大pt-60  加5  padding-top
+//内边距 最小pb-5  最大pb-60  加5  padding-bottom
+//内边距 最小pd-5  最大pd-60  加5  padding
+.generate-pas(60);
+.generate-pas(@n, @i: 5) when (@i <= @n) {
+  .pl-@{i} {
+    padding-left: 0px + @i;
+  }
+  .pr-@{i} {
+    padding-right: 0px + @i;
+  }
+  .pt-@{i} {
+    padding-top: 0px + @i;
+  }
+  .pb-@{i} {
+    padding-bottom: 0px + @i;
+  }
+  .p-@{i} {
+    padding: 0px + @i;
+  }
+  .generate-pas(@n, (@i+5));
+}
+
+//行高 最小lh-12  最大lh-30  加2
+//高 最小h-12  最大h-30  加2
+.generate-lhs(60);
+.generate-lhs(@n, @i: 12) when (@i <= @n) {
+  .lh-@{i} {
+    line-height: 0px + @i;
+  }
+  .h-@{i} {
+    height: 0px + @i;
+  }
+  .generate-lhs(@n, (@i+2));
+}
+
+//字体 最小fs-12  最大fs-40  加2
+.generate-fss(50);
+.generate-fss(@n, @i: 10) when (@i <= @n) {
+  .fs-@{i} {
+    font-size: 0px + @i;
+  }
+  .generate-fss(@n, (@i+2));
+}
+
+
+// font-weight
+.generate-fws(1000);
+.generate-fws(@n, @i: 100) when (@i <= @n) {
+  .fw-@{i} {
+    font-weight: @i;
+  }
+  .generate-fws(@n, (@i+100));
+}
+
+// 百分比
+.generate-ws(100);
+.generate-ws(@n, @i: 10) when (@i <= @n) {
+  .w-@{i} {
+    width: percentage(@i/100);
+  }
+  .generate-ws(@n, (@i+10));
+}
+// 分散排列
+.between {
+  justify-content: space-between;
+}

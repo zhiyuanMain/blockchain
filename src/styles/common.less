@@ -1,0 +1,169 @@
+html,
+body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  color: #7a8ba6;
+}
+
+html {
+  font-size: 16px;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  position: relative;
+  font-size: 14px;
+  overflow-x: hidden;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  line-height: 1em;
+  font-weight: 400;
+}
+
+a,
+span {
+  display: inline-block;
+}
+
+a {
+  cursor: pointer;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input,
+textarea {
+  -webkit-appearance: none;
+  -webkit-user-select: auto!important;
+  -khtml-user-select: auto!important;
+  -moz-user-select: auto!important;
+  -ms-user-select: auto!important;
+  -o-user-select: auto!important;
+  user-select: auto!important;
+    
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+  &-left {
+    text-align: left;
+  }
+  &-right {
+    text-align: right;
+  }
+  &-ellipsis {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  // 文本强制换行
+  &-wrap {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  // 强制不换行
+  &-nowrap {
+    word-wrap: keep-all;
+    white-space: nowrap;
+  }
+  // 金融字体
+  &-oswald {
+    font-family: Oswald;
+  }
+  // 大写字母
+  &-up {
+    text-transform: uppercase;
+  }
+  // 选中文本
+  &-select {
+    background: #1989fa;
+    color: #fff;
+  }
+}
+
+.block {
+  display: block;
+}
+
+.btn {
+  &.fade {
+    &:active {
+      opacity: 0.45;
+    }
+  }
+}
+
+.fade {
+  transition: all 0.2s;
+}
+
+.scroll-y {
+  overflow-y: auto;
+}
+
+.scroll-x {
+  overflow-x: auto;
+}
+
+.full-h {
+  height: 100%;
+}
+.full-w {
+  width: 100%;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.clearfix:after {
+  /*伪元素是行内元素 正常浏览器清除浮动方法*/
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+// 底部按钮组
+.fixed-bottom{
+  position: fixed;
+  width: 375px;
+  left: 50%;
+  margin-left: -187.5px;
+  height:64px;
+  padding: 10px;
+  background:rgba(255,255,255,1);
+  bottom: 0;
+  .van-button {
+    width: 100%;
+    height: 44px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
