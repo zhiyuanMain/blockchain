@@ -11,5 +11,9 @@
     "kuang_gong":"miner",
     "change":"0transactions   18seconds ago"
 
+  },
+  "transaction": {
+    "name": "Transaction Fee",
+    "times": "transactions"
   }
 }

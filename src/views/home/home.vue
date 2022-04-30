@@ -57,9 +57,27 @@
           >
         </div>
         <!--  blocks-->
-        <ul class="blocks-ul">
+        <ul  id="blocks-ul" v-show="false">
           <li v-for="(item, index) in blocks" :key="index">
             <div v-html="item.chain_block_html"></div>
+          </li>
+        </ul>
+        <ul class="blocks-ul">
+          <li v-for="(item, index) in blocksList" :key="index">
+            <div class="flex between">
+              <div class="label">{{ item.blockNumber}}</div>
+              <div>
+               <span class="transactions-info">{{ item.transactions }}{{ $t("home.transaction.times") }}</span>
+              </div>
+            </div>
+            <div class="flex between mt-10">
+              <div class="truncate ">{{ item.truncate }}</div>
+              <div class="fee flex center-v">
+                <span class="address-hash"
+                  >{{ item.addressHash }}
+                </span>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -71,7 +89,7 @@
           >
         </div>
         <!--  blocks-->
-        <ul class="blocks-ul" id="ul" v-show="false">
+        <ul id="transaction-ul" v-show="false">
           <li v-for="(item, index) in Transactions" :key="index">
             <div v-html="item.transaction_html"></div>
           </li>
@@ -81,7 +99,7 @@
             <div class="flex between">
               <div class="label">{{ item.tile_label }}</div>
               <div>
-                <img src="@/assets/images/home/fee.png" alt="" /><span>{{
+                <img src="@/assets/images/home/new/fee.png" alt="" /><span>{{ $t("home.transaction.name") }}:{{
                   item.text_nowrap
                 }}</span>
               </div>
@@ -89,7 +107,7 @@
             <div class="flex between mt-10">
               <div class="status ">{{ item.status }}</div>
               <div class="fee flex center-v">
-                <img src="@/assets/images/home/addr.png" alt="" /><span
+                <img src="@/assets/images/home/new/copy.png" alt="" /><span
                   >{{ item.text_truncate }}
                 </span>
               </div>
@@ -107,6 +125,7 @@ export default {
   data() {
     return {
       blocks: [],
+      blocksList: [],
       Transactions: [],
       tranList: [],
       web3: null,
@@ -133,8 +152,31 @@ export default {
       });
       if (res.status === 200) {
         this.blocks = res.data.blocks;
+        this.$nextTick(() => {
+          //blocknumber
+          const blockElement = document.querySelectorAll('#blocks-ul li')
+          let blocksData = []
+          blockElement.forEach((item)=>{
+            let blockNumber =  item.querySelector('*[data-block-number]').getAttribute('data-block-number');
+            let transactions = item.querySelector(".tile-transactions .mr-2").innerHTML.split(' ')[0];
+            let dataFromNow = item.querySelector('.tile-transactions .text-nowrap')?.getAttribute('data-from-now')
+            let truncate = item.querySelector('.text-truncate')?.innerText.split('\n').filter(i=>i)[0]
+            let addressHashLink = item.querySelector('a[data-test=address_hash_link]').getAttribute('href')
+            let addressHash = item.querySelector('span[data-address-hash]').getAttribute('data-address-hash')
+            blocksData.push({
+              blockNumber,
+              transactions,
+              dataFromNow,
+              truncate,
+              addressHashLink,
+              addressHash
+            })
+          })
+          this.blocksList = blocksData
+          console.log('blocksData-------', blocksData)
+        })
+
       }
-      console.log(res);
     },
     async transactions() {
       const res = await this.$api({
@@ -146,13 +188,14 @@ export default {
         this.Transactions = res.data.transactions;
 
         this.$nextTick(() => {
-          let tile_label = document.getElementsByClassName("tile-label");
-          let status = document.getElementsByClassName("tile-status-label");
-          let mtc = document.getElementsByClassName("tile-title");
-          let text_nowrap = document.getElementsByClassName(
+          const transactionUl = document.getElementById('transaction-ul')
+          let tile_label = transactionUl.getElementsByClassName("tile-label");
+          let status = transactionUl.getElementsByClassName("tile-status-label");
+          let mtc = transactionUl.getElementsByClassName("tile-title");
+          let text_nowrap = transactionUl.getElementsByClassName(
             "ml-0 ml-md-1 text-nowrap"
           );
-          let text_truncate = document.getElementsByClassName(
+          let text_truncate = transactionUl.getElementsByClassName(
             "tile-status--success"
           );
           let arr = [];
@@ -368,53 +411,92 @@ export default {
           border-image: url("~@/assets/images/home/new/home_border.png") 1 fill repeat  ;
           color: #4a5970;
           position: relative;
-          .tile-title {
+          .label {
             color: #FFFFFF;
             font-size: 13px;
             font-weight: 500;
           }
-          .tile-transactions {
+          .transactions-info{
             font-size: 10px;
             color: #96A4C7;
-            position: absolute;
-            top: 10px;
-            right: 20px;
           }
-          .text-truncate::before{
+          .truncate::before{
             content: ' ';
-            width: 7.5px;
-            height: 7.5px;
+            width: 9px;
+            height: 9px;
             display: inline-block;
             background: url("~@/assets/images/home/new/miner.png") no-repeat;
             background-size: 100%;
             vertical-align: middle;
+            margin-right: 1px;
           }
-          .text-truncate{
+          .truncate{
             font-size: 9px;
           }
-          .d-none {
-            position: absolute;
-            top: 30px;
-            right: 20px;
-            width: 200px;
+         
+          .address-hash{
+            width: 92px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             color: #FFFFFF;
+            vertical-align: middle;
+            font-size: 11px;
           }
+        }}
 
-          .d-md-inline-block {
-            display: none;
-          }
-        }
-      }
+        //   .tile-bottom-contents{
+        //     position: relative;
+        //     margin-top: 15px;
+        //     .tile-transactions {
+        //       font-size: 10px;
+        //       color: #96A4C7;
+        //       position: absolute;
+        //       right: 0;
+        //       top: -29px;
+        //     }
+        //     .text-truncate::before{
+        //       content: ' ';
+        //       width: 9px;
+        //       height: 9px;
+        //       display: inline-block;
+        //       background: url("~@/assets/images/home/new/miner.png") no-repeat;
+        //       background-size: 100%;
+        //       vertical-align: middle;
+        //     }
+        //     .text-truncate{
+        //       font-size: 9px;
+        //       a{
+        //         float: right;
+        //         .d-none {
+        //           // top: 30px;
+        //           // right: 20px;
+        //           width: 92px;
+        //           white-space: nowrap;
+        //           overflow: hidden;
+        //           text-overflow: ellipsis;
+        //           color: #FFFFFF;
+        //           vertical-align: middle;
+        //           // font-size: 11px;
+        //         }
+        //         .d-md-inline-block {
+        //           display: none;
+        //         }
+        //       }
+             
+        //     }
+        //   }
+        // }
+      // }
     }
     .transactions {
-      margin-top: 13px;
+      margin-top: 24.5px;
       .more {
+        background: url("~@/assets/images/home/new/home_blocks.png") no-repeat;
+        background-size: 100% 100%;
         height: 40px;
         width: 100%;
-        background: #ffa72c;
+        // background: #3a9df2;
         display: flex;
         padding: 0 8px;
         font-size: 12px;
@@ -423,40 +505,65 @@ export default {
         a {
           color: #ffffff;
         }
-      }
-      ul {
-        background: #fff;
-        li {
-          padding: 10px 8px;
-          border-bottom: 1px solid #e1e1e1;
-          color: #4a5970;
+        .value {
+          justify-content: flex-start;
+          display: flex;
+          align-items: center;
+        }
+        .label {
+          flex: 1;
+          justify-content: flex-end;
+          display: flex;
+          align-items: center;
         }
       }
+
       .transaction-ul {
         font-family: Source Han Sans CN;
+        li {
+          padding: 10px 8px;
+          border-bottom: 1px solid;
+          border-image: url("~@/assets/images/home/new/home_border.png") 1 fill repeat  ;
+          color: #4a5970;
+          position: relative;
+        }
         img {
-          height: 12px;
-          width: 12px;
+          height: 9px;
+          width: 9px;
         }
         .label {
           font-size: 13px;
           font-weight: 500;
-          color: #4a5970;
+          color: #FFFFFF;
+        }
+        .label + div{
+          font-size: 9px;
+          color: #96A4C7;
+          img{
+            width: 9px;
+            margin-right: 1.5px;
+          }
         }
         .status {
           font-size: 11px;
-          font-weight: 400;
-          color: #20e5ff;
-          margin-left: 10px;
+          font-weight: 50;
+          color: #D0AA08;
         }
         .fee {
           width: 215px;
           height: 18px;
-          background: #f2f3f7;
+          background: #475B71;
+          font-size: 10px;
+          padding: 0 5px;
+          img{
+            width: 10px;
+            margin-right: 5px;
+          }
           span {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: #FFFFFF;
           }
         }
       }

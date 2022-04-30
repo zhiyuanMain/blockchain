@@ -11,5 +11,10 @@
     "kuang_gong":"矿工",
     "change":"0筆交易   18秒前"
 
+  },
+  "transaction": {
+    "name": "交易",
+    "times": "筆交易"
   }
+
 }
