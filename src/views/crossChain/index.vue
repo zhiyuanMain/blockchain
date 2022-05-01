@@ -61,7 +61,7 @@
         <div class="up-to-down" @click="upDown()">
           <img src="@/assets/images/crossChain/up-to-down.png" alt="" />
         </div>
-        <div class="item_list">
+        <div class="item_list item_list_c2">
           <div class=" flex between center-v">
             <div class="currency_left flex center-v between">
               <div class="flex">
@@ -749,8 +749,13 @@ export default {
     .item_list {
       background: #1e2637;
       padding: 14px 10px 23px;
-      margin-bottom: 12px;
+      // margin-bottom: 12px;
       border-radius: 10px;
+      &_c2 {
+        margin-top: -10px;
+        padding-top: 25px;
+        padding-bottom: 15px;
+      }
 
       .currency_left {
         width: 130px;
@@ -853,15 +858,14 @@ export default {
     .up-to-down {
       height: 31px;
       width: 90%;
-      position: absolute;
+      margin: 0 auto;
+      position: relative;
 
       img {
+        display: block;
         height: 100%;
         width: 31px;
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        margin-left: -15px;
+        margin: -10px auto;
       }
     }
 
@@ -875,6 +879,7 @@ export default {
       font-size: 16px;
       font-weight: 400;
       color: #ffffff;
+      margin-top: 18px;
       margin-bottom: 18px;
       border-radius: 10px;
     }
