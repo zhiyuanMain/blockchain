@@ -7,13 +7,13 @@
       <div class="tab">
         <div class="flex tab-top">
           <div
-            :class="[isActive ? 'activeTab1' : 'inActive1', '']"
+            :class="[isActive ? 'activeTab1' : 'inActive1', 'btn1']"
             @click="tab(1)"
           >
             {{ $t("exchange.tab1") }}
           </div>
           <div
-            :class="[isInActive ? 'activeTab2' : 'inActive2']"
+            :class="[isInActive ? 'activeTab2' : 'inActive2', 'btn2']"
             @click="tab(2)"
           >
             {{ $t("exchange.tab2") }}
@@ -327,15 +327,15 @@ export default {
 </script>
 <style lang="less">
 .exchange-list {
-  background: #f4f8fb;
+  // background: #f4f8fb;
   min-height: 100vh;
   padding-bottom: 50px;
 
   // margin-bottom: 30px;
   .banner {
-    background: url("~@/assets/images/crossChain/banner.png") no-repeat center
-      center;
-    background-size: 100% 100%;
+    // background: url("~@/assets/images/crossChain/banner.png") no-repeat center
+    //   center;
+    // background-size: 100% 100%;
     height: 254px;
 
     h2 {
@@ -348,9 +348,12 @@ export default {
   }
 
   .main {
-    background: url("~@/assets/images/crossChain/crossChain_01.png") no-repeat
-      center center;
-    background-size: 100% 100%;
+    // background: url("~@/assets/images/crossChain/crossChain_01.png") no-repeat
+    //   center center;
+    // background-size: 100% 100%;
+    background-color: #28344C;
+    border-radius: 10px;
+    // opacity: 0.8;
     min-height: 682px;
     margin: 0px 15px;
     margin-top: -140px;
@@ -361,9 +364,10 @@ export default {
       font-weight: bold;
 
       .tab-top {
+        justify-content: space-between;
         > div {
           height: 37px;
-          width: 50%;
+          width: calc(50% - 9px);
           text-align: center;
           display: flex;
           align-items: center;
@@ -371,33 +375,33 @@ export default {
         }
       }
 
-      .activeTab1 {
-        background: url("~@/assets/images/change/list_tab1.png") no-repeat
+      .btn1 {
+        background: url("~@/assets/images/exchange/btn_bg1.png") no-repeat
           center center;
         background-size: 100% 100%;
         color: #ffffff;
       }
 
-      .activeTab2 {
-        background: url("~@/assets/images/change/list_tab3.png") no-repeat
+      .btn2 {
+        background: url("~@/assets/images/exchange/btn_bg2.png") no-repeat
           center center;
         background-size: 100% 100%;
         color: #ffffff;
       }
 
-      .inActive1 {
-        background: url("~@/assets/images/change/list_tab4.png") no-repeat
-          center center;
-        background-size: 100% 100%;
-        color: #1e202d;
-      }
+      // .inActive1 {
+      //   background: url("~@/assets/images/change/list_tab4.png") no-repeat
+      //     center center;
+      //   background-size: 100% 100%;
+      //   color: #1e202d;
+      // }
 
-      .inActive2 {
-        background: url("~@/assets/images/change/list_tab2.png") no-repeat
-          center center;
-        background-size: 100% 100%;
-        color: #1e202d;
-      }
+      // .inActive2 {
+      //   background: url("~@/assets/images/change/list_tab2.png") no-repeat
+      //     center center;
+      //   background-size: 100% 100%;
+      //   color: #1e202d;
+      // }
 
       .tab-content {
         ul {
