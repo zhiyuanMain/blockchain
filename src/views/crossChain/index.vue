@@ -3,21 +3,22 @@
     <div class="banner">
       <div class="wrapper">
       		<h2>{{ $t("crossChain.title") }}</h2>
-      		<a href="https://faucet-smart.metaswap.im/">
-      		<img src="@/assets/images/crossChain/engomtc.png" alt=""  v-if="lang == 'en'" >
-      		<img src="@/assets/images/crossChain/gomtc.png" alt=""  v-else >
-      		</a>
+          <!-- 屏蔽一些功能 -->
+      		<!-- <a href="https://faucet-smart.metaswap.im/">
+      		  <img src="@/assets/images/crossChain/engomtc.png" alt=""  v-if="lang == 'en'" >
+      		  <img src="@/assets/images/crossChain/gomtc.png" alt=""  v-else >
+      		</a> -->
 		</div>
     </div>
     <div class="main">
       <div class="flex right mb-5">
         <img
-          style="height:20px;width:20px；margin-right:3px"
+          style="height:18px;width:18px;margin-right:8px"
           src="@/assets/images/crossChain/consult.png"
           alt=""
         />
         <img
-          style="height:20px;width:20px"
+          style="height:18px;width:18px"
           src="@/assets/images/crossChain/wenHao.png"
           alt=""
         />
@@ -26,17 +27,19 @@
         <div class="item_list flex between center-v">
           <div class="currency_left flex center-v between">
             <div class="flex">
-              <img
-                class="currency_img"
-                src="@/assets/images/crossChain/crossChain_03.png"
-                alt=""
-              />
-              <div>
-                <div class="currency_usdt">USDT</div>
-                <!-- <div class="currency_bsc">{{ BSC }}</div> -->
-                <div class="currency_bsc" v-show="network == 'bsc'">BSC</div>
-                <div class="currency_bsc" v-show="network == 'mtc'">MTC</div>
-              </div>
+              <cp-btn>
+                <img
+                  class="currency_img"
+                  src="@/assets/images/crossChain/crossChain_03.png"
+                  alt=""
+                />
+                <div>
+                  <div class="currency_usdt">USDT</div>
+                  <!-- <div class="currency_bsc">{{ BSC }}</div> -->
+                  <div class="currency_bsc" v-show="network == 'bsc'">BSC</div>
+                  <div class="currency_bsc" v-show="network == 'mtc'">MTC</div>
+                </div>
+              </cp-btn>
             </div>
             <!-- <img
               class="down flex right"
@@ -62,17 +65,19 @@
           <div class=" flex between center-v">
             <div class="currency_left flex center-v between">
               <div class="flex">
-                <img
-                  class="currency_img"
-                  src="@/assets/images/crossChain/crossChain_03.png"
-                  alt=""
-                />
-                <div>
-                  <div class="currency_usdt">USDT</div>
-                  <!-- <div class="currency_bsc">{{ MTC }}</div> -->
-                  <div class="currency_bsc" v-show="network == 'mtc'">BSC</div>
-                  <div class="currency_bsc" v-show="network == 'bsc'">MTC</div>
-                </div>
+                 <cp-btn type="warn">
+                  <img
+                    class="currency_img"
+                    src="@/assets/images/crossChain/crossChain_03.png"
+                    alt=""
+                  />
+                  <div>
+                    <div class="currency_usdt">USDT</div>
+                    <!-- <div class="currency_bsc">{{ MTC }}</div> -->
+                    <div class="currency_bsc" v-show="network == 'mtc'">BSC</div>
+                    <div class="currency_bsc" v-show="network == 'bsc'">MTC</div>
+                  </div>
+                </cp-btn>
               </div>
               <!-- <img
                 class="down flex right"
@@ -82,7 +87,7 @@
             </div>
             <div class="currency_right">
               <div class="balance">{{ $t("crossChain.Expected") }}</div>
-              <div class="fs-18" style="color:color: #656565;margin-top:27px">
+              <div class="fs-18" style="color: #fff;margin-top:13px;font-weight:bold">
                 {{ EstimatedQuantity }}
               </div>
             </div>
@@ -108,26 +113,26 @@
       <div class="cost">
         <div class="flex between">
           <span>{{ $t("crossChain.path") }}</span>
-          <span>SWAP</span>
+          <span class="cost__value">SWAP</span>
         </div>
         <div class="flex between">
           <span>{{ $t("crossChain.Service") }}</span>
           <div class="flex center-v">
-            <span id="span">1USDT=1.00 USDT</span>
+            <span id="span" class="cost__value">1USDT=1.00 USDT</span>
             <img src="@/assets/images/crossChain/integral.png" alt="" />
           </div>
         </div>
         <div class="flex between">
           <span>{{ $t("crossChain.Reference") }}</span>
-          <span>0 USDT</span>
+          <span class="cost__value">0 USDT</span>
         </div>
         <div class="flex between">
           <span>{{ $t("crossChain.Estimated") }}</span>
-          <span>{{ EstimatedQuantity }}</span>
+          <span class="cost__value">{{ EstimatedQuantity }}</span>
         </div>
         <div class="flex between">
           <span>{{ $t("crossChain.Maximum") }}</span>
-          <span>{{ maximum }} USDT</span>
+          <span class="cost__value">{{ maximum }} USDT</span>
         </div>
       </div>
       <!-- 兑换记录 -->
@@ -201,6 +206,7 @@ import Web3 from "web3";
 import bus from "@/components/bus";
 let moment = require("moment");
 import { Tab, Tabs, Button, Icon, Toast } from "vant";
+import CpBtn from '../../components/cp-btn.vue';
 export default {
   name: "home",
   data() {
@@ -230,6 +236,7 @@ export default {
     };
   },
   components: {
+    CpBtn,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Button.name]: Button,
@@ -715,15 +722,11 @@ export default {
 </script>
 <style lang="less">
 .crossChain {
-  background: #f4f8fb;
   min-height: 100vh;
   padding-bottom: 50px;
   margin-bottom: 30px;
 
   .banner {
-    background: url("~@/assets/images/crossChain/banner.png") no-repeat center
-      center;
-    background-size: 100% 100%;
     height: 254px;
 
     h2 {
@@ -736,27 +739,25 @@ export default {
   }
 
   .main {
-    background: url("~@/assets/images//crossChain/crossChain_01.png") no-repeat
-      center center;
-    background-size: 100% 100%;
     min-height: 682px;
     margin: 0px 15px;
     margin-top: -140px;
     padding: 17px 8px;
+    background-color: #28344C;
+    border-radius: 10px;
 
     .item_list {
-      background: #f2f3f7;
-      padding: 14px 12px 15px;
+      background: #1e2637;
+      padding: 14px 10px 23px;
       margin-bottom: 12px;
       border-radius: 10px;
 
       .currency_left {
         width: 130px;
         height: 48px;
-        background: #ffffff;
-        box-shadow: 0px 4px 6px 0px #e6e7ee;
         border-radius: 6px;
         padding: 7px;
+        color: #fff;
 
         .currency_img {
           height: 26px;
@@ -772,25 +773,37 @@ export default {
         .currency_usdt {
           font-size: 18px;
           font-weight: 500;
-          color: #2c2924;
         }
 
         .currency_bsc {
           font-size: 11px;
           font-weight: 400;
-          color: #90908f;
+          color: #fff;
+          text-align: left;
+        }
+
+        .cp-btn-container {
+          width: 139px;
+          height: 59px;
+          display: flex;
+          // justify-content: space-between;
+          align-items: center;
+          padding: 10px 20px;
         }
       }
 
       .currency_right {
         input {
-          width: 110px;
-          height: 28px;
+          width: 130px;
+          height: 32px;
           border: none;
           text-align: right;
           font-size: 18px;
           padding: 0 5px;
-          color: #656565;
+          background: #2e374d;
+          color: #fff;
+          border-radius: 4px;
+          font-weight: bold;
         }
 
         > div {
@@ -800,40 +813,39 @@ export default {
         .balance {
           font-size: 11px;
           font-weight: 400;
-          color: #3b3d49;
+          color: #fff;
         }
 
         .least {
           font-size: 10px;
           font-weight: 400;
-          color: #888888;
+          color: #96A4C7;
         }
       }
 
       .addr {
-        background: #fff;
         height: 37px;
         margin: 16px 0 6px 0;
-        border-radius: 10px;
+        background: #2e374d;
+        border-radius: 6px;
 
         input {
           width: 180px;
           border: none;
           height: 36px;
-          font-size: 10px;
-          color: #888888;
-          border-top-left-radius: 10px;
-          border-bottom-left-radius: 10px;
-          // border-radi:10px;
+          font-size: 12px;
+          font-weight: bold;
+          background: #2e374d;
+          color: #fff;
         }
 
         .wallet {
-          background: #2676e9;
+          background: #bc9926;
           margin-right: 6px;
           color: #ffffff;
           font-size: 10px;
           padding: 8px;
-          border-radius: 8px;
+          border-radius: 4px;
         }
       }
     }
@@ -854,7 +866,8 @@ export default {
     }
 
     .confirm {
-      background: #3a9df2;
+      background: url('~@/assets/images/crossChain/confirm.png') no-repeat;
+      background-size: cover;
       width: 100%;
       height: 47px;
       line-height: 47px;
@@ -867,24 +880,21 @@ export default {
     }
 
     .cost {
-      background: #f2f3f7;
-      padding: 17px 13px;
+      padding: 10px 4px 17px;
       border-radius: 10px;
-
+      color: #fff;
       > div {
         margin-top: 14px;
 
         span:first-child {
           font-size: 11px;
           font-weight: 400;
-          color: #78797b;
         }
 
         span:last-child,
         #span {
           font-size: 12px;
           font-weight: 500;
-          color: #2c2924;
         }
 
         img {
@@ -892,14 +902,18 @@ export default {
           width: 18px;
         }
       }
+
+      &__value {
+        font-weight: bolder;
+      }
     }
 
     .exchange-record {
       border-radius: 10px;
+      color: #fff;
       .title {
         font-size: 14px;
         font-weight: bold;
-        color: #1e202d;
       }
 
       .exchange-record-box {
