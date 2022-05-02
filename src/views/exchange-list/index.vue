@@ -29,26 +29,13 @@
             >
               <div class="flex between">
                 <div class="flex center-v">
-                  <!-- <van-image
-                    class="img1"
-                    :src="require(`@/assets/images/change/${item.name}.png`)"
-                    error-icon="require('../../assets/images/change/defaultIcon.png')"
-                  >
-                    <template v-slot:error
-                      ><img
-                        src="
-                          require('../../assets/images/change/defaultIcon.png')
-                        "
-                        alt=""
-                    /></template>
-                  </van-image> -->
                   <img
                     class="img1"
-                    :src="require(`@/assets/images/change/${item.name}.png`)"
+                    :src="require(`@/assets/images/exchange/item-icon-${item.name}.png`)"
                     :onerror="defaultImg"
                     alt=""
                   />
-                  <span class="FRD fw-600">{{ item.name }}</span>
+                  <span class="FRD fw-600">{{ item.name.toUpperCase() }}</span>
                   <span class="USDT">/USDT</span>
                 </div>
                 <div class="value">{{ item.total2 }}</div>
@@ -57,7 +44,7 @@
                 <div class="flex center-v">
                   <img
                     class="img2"
-                    src="@/assets/images/change/shouShi.png"
+                    src="@/assets/images/exchange/item-icon-cursor.png"
                     alt=""
                   />
                   <span class="num">24H額 {{ item.volume }}</span>
@@ -88,11 +75,11 @@
                   </van-image> -->
                   <img
                     class="img1"
-                    :src="require(`@/assets/images/change/${item.name}.png`)"
+                    :src="require(`@/assets/images/exchange/item-icon-${item.name}.png`)"
                     :onerror="defaultImg"
                     alt=""
                   />
-                  <span class="FRD fw-600">{{ item.name }}</span>
+                  <span class="FRD fw-600">{{ item.name.toUpperCase() }}</span>
                   <span class="USDT">/USDT</span>
                 </div>
                 <div class="value">{{ item.price2 }}</div>
@@ -121,6 +108,8 @@ import BEP20 from "@/assets/contracts/BEP20.json";
 import MetaSwap from "@/assets/contracts/MetaSwap.json";
 import global from "../common.vue";
 import { Toast } from "vant";
+
+const mockData = ['mtc', 'tts1', 'drd', 'ftd', 'frd']
 
 export default {
   name: "home",
@@ -152,7 +141,7 @@ export default {
     },
   },
   mounted() {
-    this.init();
+    // this.init();
     this.getList1();
   },
 
@@ -179,6 +168,16 @@ export default {
           }
         }
       }
+      // todo:
+      this.listByPrice = mockData.map(str => {
+        return {
+          name: str,
+          address: "0xf3b78906a81e327b3671699b34fc2823907070a2",
+          price1: 0,
+          price2: 0,
+          volume: 0,
+        }
+      })
     },
     async getList1() {
       const res = await this.$api({
@@ -200,12 +199,22 @@ export default {
         }
       }
       console.log(res.data);
+      // todo:
+      this.listByVolume = mockData.map(str => {
+        return {
+          name: str,
+          address: "0xf3b78906a81e327b3671699b34fc2823907070a2",
+          total1: 0,
+          total2: 0,
+          volume: 0,
+        }
+      })
     },
     tab(type) {
       if (type === 1) {
         this.isActive = true;
         this.isInActive = false;
-        // this.getList1();
+        this.getList1();
       } else {
         this.isActive = false;
         this.isInActive = true;
@@ -213,6 +222,7 @@ export default {
       }
     },
     async init() {
+      // todo
       if (this.web3 == null) {
         await this.getWeb3Psc();
       }
@@ -239,6 +249,7 @@ export default {
       );
     },
     async poolsToData(list) {
+      console.log(111111)
       let pools = [];
       for (var i = 0; i < list.length; i++) {
         let t = list[i];
@@ -406,47 +417,56 @@ export default {
       .tab-content {
         ul {
           li {
-            background: #f4f6f8;
+            background: #1e2637;
             padding: 12px 8px;
             margin-top: 9px;
             font-size: 13px;
+            border-radius: 4px;
+            border: 1px solid #15618c;
+            color: #fff;
 
             .img1 {
-              height: 19px;
-              width: 19px;
+              height: 20px;
+              width: 20px;
+              margin-right: 4px;
             }
 
             .img2 {
               height: 14px;
               width: 14px;
+              margin-left: 3px;
+              margin-right: 8px;
             }
 
             .FRD {
-              color: #0a2337;
+              color: #fff;
+              font-weight: bold;
             }
 
             .USDT {
-              color: #9196af;
+              color: #96A4C7;
+              font-weight: bold;
             }
 
             .num {
-              color: #8d92a9;
+              color: #8D92A9;
               font-size: 10px;
             }
 
             .value {
-              color: #e35b67;
+              color: #96A4C7;
             }
 
             .price {
               font-size: 10px;
-              color: #8d92a9;
+              color: #8D92A9;
             }
 
             .red {
-              background: #e35b67;
-              border-radius: 7px;
-              padding: 4px 6px;
+              background: #C19E07;
+              border-radius: 4px;
+              padding: 0px 6px;
+              line-height: 14px;
               color: #fff;
             }
 

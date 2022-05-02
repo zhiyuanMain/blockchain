@@ -15,21 +15,15 @@
         <div class="volume_top">
           <div class="currency">{{ tokenInfo.symbol }} / USDT</div>
           <div>
+            <div class="label">24H {{ $t("exchange.tab2") }}</div>
             <div class="value">
               {{ latestPriceU }} U / {{ latestPriceT }} {{ tokenInfo.symbol }}
             </div>
-            <div class="label">24H {{ $t("exchange.tab2") }}</div>
           </div>
         </div>
         <div class="chart">
           <div id="charts_box" style="height: 200px;width:100%"></div>
         </div>
-        <img
-          style="width:100%"
-          class="mb-15"
-          src="@/assets/images/change/line.png"
-          alt=""
-        />
       </div>
       <!--交易池 -->
       <div class="trade flex mb-15">
@@ -37,7 +31,7 @@
           <div class="title mb-10">{{ $t("exchange.trade") }}</div>
           <ul>
             <li>
-              <div class="flex center">
+              <div class="flex">
                 <div class="trade_img mt-10">
                   <img
                     v-if="tokenInfo.symbol"
@@ -55,7 +49,7 @@
               </div>
             </li>
             <li>
-              <div class="flex center">
+              <div class="flex">
                 <div class="trade_img mt-10">
                   <img
                     src="@/assets/images/change/icon_02.png"
@@ -79,7 +73,9 @@
                 ]"
                 @click="tab('buy')"
               >
-                {{ $t("exchange.buy") }}
+                <cp-btn>
+                  {{ $t("exchange.buy") }}
+                </cp-btn>
               </div>
               <div
                 :class="[
@@ -88,7 +84,9 @@
                 ]"
                 @click="tab('sale')"
               >
-                {{ $t("exchange.sale") }}
+                <cp-btn type="warn">
+                  {{ $t("exchange.sale") }}
+                </cp-btn>
               </div>
             </div>
             <div class="flex between mt-10 wallet">
@@ -128,12 +126,6 @@
           </div>
         </div>
       </div>
-      <img
-        style="width:100%"
-        class="mb-15"
-        src="@/assets/images/change/line.png"
-        alt=""
-      />
       <div class="FRD">
         <div class="title">{{ tokenInfo.symbol }}（{{ tokenInfo.name }}）</div>
         <ul>
@@ -414,6 +406,7 @@ export default {
       var dom = document.getElementById("charts_box");
       var myChart = this.$echarts.init(dom);
       let option = {
+        backgroundColor: '#1e2637',
         tooltip: {
           trigger: "axis",
         },
@@ -422,50 +415,54 @@ export default {
           right: 0,
           textStyle: {
             //图例文字的样式
-            color: "#9E9E9E",
+            color: "#B3B3B3",
             fontSize: 10,
           },
-          itemGap: 1,
-          itemWidth: 14, //图标宽
+          itemGap: 2,
+          itemWidth: 10, //图标宽
           itemHeight: 10, //图标高
           data: [
             {
               name: "分",
               // 强制设置图形为圆。
-              icon: `image://${legend_img_1}`,
+              // icon: `image://${legend_img_1}`,
+              icon: 'circle',
               // 设置文本为红色
               textStyle: {
-                color: "rgba(0, 0, 0, 0.85)",
+                // color: "#fff",
                 fontSize: 10,
               },
             },
             {
               name: "时",
               // 强制设置图形为圆。
-              icon: `image://${legend_img_2}`,
+              // icon: `image://${legend_img_2}`,
+              icon: 'circle',
               // 设置文本为红色
               textStyle: {
-                color: "rgba(0, 0, 0, 0.85)",
+                // color: "rgba(0, 0, 0, 0.85)",
                 fontSize: 10,
               },
             },
             {
               name: "日",
               // 强制设置图形为圆。
-              icon: `image://${legend_img_3}`,
+              // icon: `image://${legend_img_3}`,
+              icon: 'circle',
               // 设置文本为红色
               textStyle: {
-                color: "rgba(0, 0, 0, 0.85)",
+                // color: "rgba(0, 0, 0, 0.85)",
                 fontSize: 10,
               },
             },
             {
               name: "月",
               // 强制设置图形为圆。
-              icon: `image://${legend_img_4}`,
+              // icon: `image://${legend_img_4}`,
+              icon: 'circle',
               // 设置文本为红色
               textStyle: {
-                color: "rgba(0, 0, 0, 0.85)",
+                // color: "rgba(0, 0, 0, 0.85)",
                 fontSize: 10,
               },
             },
@@ -491,6 +488,9 @@ export default {
         },
         yAxis: {
           type: "value",
+          nameTextStyle: {
+            color: '#fff'
+          }
           // min: 0,
           // max: 9,
           // interval: 2,
@@ -1193,15 +1193,10 @@ export default {
 </script>
 <style lang="less">
 .exchange {
-  background: #f4f8fb;
   min-height: 100vh;
   padding-bottom: 50px;
-  margin-bottom: 30px;
 
   .banner {
-    background: url("~@/assets/images/crossChain/banner.png") no-repeat center
-      center;
-    background-size: 100% 100%;
     height: 254px;
 
     h2 {
@@ -1214,13 +1209,13 @@ export default {
   }
 
   .main {
-    background: url("~@/assets/images//crossChain/crossChain_01.png") no-repeat
-      center center;
-    background-size: 100% 100%;
-    min-height: 254px;
+    background-color: #28344C;
+    border-radius: 10px;
+    // opacity: 0.8;
+    min-height: 682px;
     margin: 0px 15px;
     margin-top: -140px;
-    padding: 9px 8px;
+    padding: 16px 15px;
 
     .volume {
       .volume_top {
@@ -1231,29 +1226,25 @@ export default {
         .currency {
           font-size: 13px;
           font-weight: bold;
-          color: #1e202d;
+          color: #fff;
         }
 
         .label {
-          font-size: 9px;
-          color: #333333;
-          line-height: 19px;
+          font-size: 10px;
+          color: #fff;
+          line-height: 18px;
           text-align: right;
         }
 
         .value {
-          font-size: 15px;
-          font-family: Source Han Sans CN;
+          font-size: 20px;
           font-weight: bold;
-          color: #f95654;
-          line-height: 19px;
+          color: #96A4C7;
+          line-height: 20px;
         }
       }
 
       .chart {
-        background: url("~@/assets/images/change/change_01.png") no-repeat
-          center center;
-        background-size: 100% 100%;
         min-height: 142px;
         width: 100%;
         margin: 16px 0;
@@ -1266,35 +1257,40 @@ export default {
 
     .trade_left {
       margin-right: 10px;
+      background-color: #1D2637;
+      border-radius: 4px;
+      padding: 10px;
 
       .title {
         font-size: 13px;
         font-weight: bold;
-        color: #1e202d;
+        color: #fff;
       }
 
       ul {
+        li {
+          background-color: #2e374d;
+          border: 1px solid #15618c;
+          border-radius: 4px;
+          color: #fff;
+        }
         li:first-child {
-          background: url("~@/assets/images/change/trade_01.png") no-repeat
-            center center;
-          background-size: 100% 100%;
           height: 77px;
           width: 123px;
           margin-bottom: 14px;
         }
 
         li:last-child {
-          background: url("~@/assets/images/change/trade_02.png") no-repeat
-            center center;
-          background-size: 100% 100%;
           height: 77px;
           width: 123px;
         }
       }
 
       .trade_img {
-        color: #4c5360;
+        color: #fff;
         font-size: 13px;
+        padding: 10px;
+        width: 100%;
 
         img {
           height: 18px;
@@ -1303,8 +1299,9 @@ export default {
         }
 
         .num {
-          text-align: center;
-          color: #4c5360;
+          font-weight: bolder;
+          text-align: left;
+          font-size: 18px;
         }
       }
     }
@@ -1326,38 +1323,42 @@ export default {
       }
 
       .sale {
-        background: url("~@/assets/images/change/sale.png") no-repeat center
-          center;
-        background-size: 100% 100%;
         height: 40px;
         width: 87px;
-        color: #727888;
+        .cp-btn-container {
+          width: 100%;
+          height: 100%;
+          line-height: 40px;
+        }
         // margin-left: 10px;
       }
 
       .buy {
-        background: url("~@/assets/images/change/buy.png") no-repeat center
-          center;
-        background-size: 100% 100%;
         height: 40px;
         width: 87px;
+        .cp-btn-container {
+          width: 100%;
+          height: 100%;
+          line-height: 40px;
+        }
         // margin-left: 10px;
       }
 
       .wallet {
         font-size: 10px;
         margin-bottom: 8px;
+        color: #96A4C7;
       }
 
       .jia {
-        background: url("~@/assets/images/change/jia.png") no-repeat center
-          center;
-        background-size: 100% 100%;
         width: 100%;
         height: 35px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: #2e374d;
+        border: 0.0625rem solid #15618c;
+        border-radius: 4px;
 
         img {
           height: 10px;
@@ -1368,7 +1369,8 @@ export default {
         input {
           // height: 100%;
           border: none;
-          background: #f2f3f7;
+          background: #2e374d;
+          color: #fff;
           width: 100px;
           text-align: center;
         }
@@ -1386,7 +1388,7 @@ export default {
       }
 
       .submit {
-        background: url("~@/assets/images/change/submit.png") no-repeat center
+        background: url("~@/assets/images/crossChain/confirm.png") no-repeat center
           center;
         background-size: 100% 100%;
         width: 100%;
@@ -1401,12 +1403,12 @@ export default {
       .title {
         font-size: 14px;
         font-weight: bold;
-        color: #1e202d;
+        color: #fff;
         margin-bottom: 8px;
       }
 
       ul {
-        background: #f2f3f7;
+        background: #1D2637;
         border-radius: 4px;
         display: flex;
         flex-wrap: wrap;
@@ -1424,14 +1426,14 @@ export default {
           .tit {
             font-size: 10px;
             font-weight: 500;
-            color: #4c5360;
+            color: #fff;
             text-align: center;
           }
 
           .num {
             font-size: 9px;
             font-weight: 500;
-            color: rgba(58, 157, 242, 0.99);
+            color: #96A4C7;
             text-align: center;
             margin: 7px 9px;
           }
@@ -1439,7 +1441,7 @@ export default {
           .line {
             width: 22px;
             height: 1px;
-            background: #35f8f4;
+            background: #96A4C7;
             margin: 10px auto;
           }
 
@@ -1448,7 +1450,7 @@ export default {
             flex: 1;
             width: 1px;
             height: 19px;
-            background: #35f8f4;
+            background: #96A4C7;
             margin-top: 10px;
           }
         }
@@ -1459,7 +1461,7 @@ export default {
       .title {
         font-size: 14px;
         font-weight: bold;
-        color: #1e202d;
+        color: #fff;
       }
 
       .exchange-record-box {
