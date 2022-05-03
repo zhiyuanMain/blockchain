@@ -31,7 +31,7 @@
                 <div class="flex center-v">
                   <img
                     class="img1"
-                    :src="require(`@/assets/images/exchange/item-icon-${item.name}.png`)"
+                    :src="require(`@/assets/images/exchange/item-icon-${item.name.toLowerCase()}.png`)"
                     :onerror="defaultImg"
                     alt=""
                   />
@@ -75,7 +75,7 @@
                   </van-image> -->
                   <img
                     class="img1"
-                    :src="require(`@/assets/images/exchange/item-icon-${item.name}.png`)"
+                    :src="require(`@/assets/images/exchange/item-icon-${item.name.toLowerCase()}.png`)"
                     :onerror="defaultImg"
                     alt=""
                   />
@@ -141,7 +141,7 @@ export default {
     },
   },
   mounted() {
-    // this.init();
+    this.init();
     this.getList1();
   },
 
@@ -169,7 +169,7 @@ export default {
         }
       }
       // todo:
-      this.listByPrice = mockData.map(str => {
+      /* this.listByPrice = mockData.map(str => {
         return {
           name: str,
           address: "0xf3b78906a81e327b3671699b34fc2823907070a2",
@@ -177,7 +177,7 @@ export default {
           price2: 0,
           volume: 0,
         }
-      })
+      }) */
     },
     async getList1() {
       const res = await this.$api({
@@ -200,7 +200,7 @@ export default {
       }
       console.log(res.data);
       // todo:
-      this.listByVolume = mockData.map(str => {
+      /* this.listByVolume = mockData.map(str => {
         return {
           name: str,
           address: "0xf3b78906a81e327b3671699b34fc2823907070a2",
@@ -208,7 +208,7 @@ export default {
           total2: 0,
           volume: 0,
         }
-      })
+      }) */
     },
     tab(type) {
       if (type === 1) {
@@ -241,9 +241,11 @@ export default {
         },
         function(err, res) {
           if (err) {
+			console.error('allswappools',err,res)
             Toast.fail("查询失败交易对失败");
             return;
           }
+		  console.log('getAllPools',res)
           _this.poolData = _this.poolsToData(res);
         }
       );
@@ -280,6 +282,7 @@ export default {
           price2: 0,
         });
       }
+	  console.log('poolsToData',this.listByVolume,this.listByPrice)
     },
     goTo(address) {
       this.$router.push({

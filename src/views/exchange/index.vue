@@ -115,7 +115,7 @@
               <span>{{ $t("exchange.wallet") }}：</span
               ><span> {{ usdtBalance }} USDT</span>
             </div>
-            <div class="jia">
+            <div class="jia estimate">
               <span class="ml-10">{{ $t("exchange.Turnover") }}</span>
               <span class="mr-10">{{ amountOfUSDT }} USDT</span>
             </div>
@@ -313,6 +313,7 @@ export default {
     };
   },
   mounted() {
+	this.tokenAddress = this.$route.query.address;
     this.getChart();
     // this.getOption();
     this.getWeb3Psc();
@@ -339,6 +340,7 @@ export default {
         buyy4Time = [];
       const res = await this.$api({
         url: "/w3j/swap/events/kline",
+		params:{address:this.tokenAddress},
         method: "get",
         header: { "X-Requested-With": "XMLhttprequest" },
       });
@@ -555,6 +557,7 @@ export default {
     },
     // tab切换
     tab(op) {
+	  console.log('tab',op)
       this.curOp = op;
       this.isTabShow = !this.isTabShow;
       if (op == "sale") {
@@ -762,14 +765,17 @@ export default {
       }
       let ctype = this.curOp;
       if (this.curOp == "buy") {
+		  console.log("768");
         let tokenInstance = await this.createInstance(
           this.BEP20USDTAddress,
           BEP20
         );
+		console.log("773",this.account, this.MetaSwapAddress);
         // 检查上次授权数量
         let allowance = await tokenInstance.methods
           .allowance(this.account, this.MetaSwapAddress)
           .call({ from: this.account });
+		console.log("778");
         console.log("allowance");
         console.log(allowance);
         if (allowance < this.toWei(this.value)) {
@@ -835,10 +841,12 @@ export default {
           })
           .on("error", function(error, receipt) {
             Toast.fail("出错了");
+			console.log('buy error')
             console.log(JSON.stringify(error));
             console.log(JSON.stringify(receipt));
           });
       } else {
+		console.log(849)
         let tokenInstance = await this.createInstance(this.tokenAddress, BEP20);
 
         let allowance = await tokenInstance.methods
@@ -864,6 +872,7 @@ export default {
               }
             );
         }
+		console.log(875)
         let r = await this.MetaSwapInstance.methods
           .swapTokenToUSDT(this.tokenAddress, this.toWei(this.value))
           .send(
@@ -928,6 +937,7 @@ export default {
           })
           .on("error", function(error, receipt) {
             Toast.fail("出错了");
+			console.log('sale error')
             console.log(JSON.stringify(error));
             console.log(JSON.stringify(receipt));
           });
@@ -1219,25 +1229,26 @@ export default {
 
     .volume {
       .volume_top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        // display: flex;
+        // justify-content: space-between;
+        // align-items: center;
 
         .currency {
           font-size: 13px;
           font-weight: bold;
           color: #fff;
+          margin-bottom: 10px;
         }
 
         .label {
           font-size: 10px;
           color: #fff;
           line-height: 18px;
-          text-align: right;
+          // text-align: right;
         }
 
         .value {
-          font-size: 20px;
+          font-size: 14px;
           font-weight: bold;
           color: #96A4C7;
           line-height: 20px;
@@ -1275,13 +1286,13 @@ export default {
           color: #fff;
         }
         li:first-child {
-          height: 77px;
+          min-height: 77px;
           width: 123px;
           margin-bottom: 14px;
         }
 
         li:last-child {
-          height: 77px;
+          min-height: 77px;
           width: 123px;
         }
       }
@@ -1302,6 +1313,7 @@ export default {
           font-weight: bolder;
           text-align: left;
           font-size: 18px;
+          word-break: break-all;
         }
       }
     }
@@ -1360,6 +1372,18 @@ export default {
         border: 0.0625rem solid #15618c;
         border-radius: 4px;
 
+        &.estimate {
+          height: auto;
+          > span:last-child {
+            display: block;
+            flex: 1;
+            max-width: 40%;
+            text-align: right;
+            padding: 4px;
+          }
+        }
+
+
         img {
           height: 10px;
           width: 10px;
@@ -1382,7 +1406,7 @@ export default {
 
         span:last-child {
           font-weight: bold;
-          color: #333333;
+          color: #fff;
           font-size: 13px;
         }
       }

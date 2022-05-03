@@ -11,3 +11,5 @@ export const langs  = [
   key:'channel',
   value:'H5'
 }
+
+export const BSCID="666"
