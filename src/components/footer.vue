@@ -78,9 +78,10 @@ export default {
     transform: translateX(-50%);
   }
   .van-tabbar-item {
-    margin: 4px 10px;
+    margin: 4px 0;
     color: #fff;
     border-radius: 6px;
+    word-break: break-all;
   }
   .van-tabbar-item--active {
       background-color: #2b3342;

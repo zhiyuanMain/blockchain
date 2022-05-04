@@ -6,7 +6,7 @@
       <div>
         <img
           class="banner-box"
-          src="@/assets/images/home/banner@2x.png"
+          src="@/assets/images/home/banner@2x.jpg"
           alt=""
         />
       </div>

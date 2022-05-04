@@ -73,7 +73,9 @@
                 ]"
                 @click="tab('buy')"
               >
-                <cp-btn>
+                <cp-btn
+                  :type="curOp === 'buy' ? 'primary' : 'disable' "
+                >
                   {{ $t("exchange.buy") }}
                 </cp-btn>
               </div>
@@ -84,7 +86,9 @@
                 ]"
                 @click="tab('sale')"
               >
-                <cp-btn type="warn">
+                <cp-btn 
+                  :type="curOp === 'sale' ? 'warn' : 'disable' "
+                >
                   {{ $t("exchange.sale") }}
                 </cp-btn>
               </div>

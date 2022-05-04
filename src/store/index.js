@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { getLanguage } from '../utils'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,11 @@ console.log('modules',modules)
 const store = new Vuex.Store({
   modules,
   state: {
-		account: "連接錢包"
+		account: "",
+    accountStrDefault: {
+      'en': 'Account',
+      'zh_CN': '連接錢包'
+    },
   },
   mutations: {
 	setAccount(state, account) {

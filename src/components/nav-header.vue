@@ -38,7 +38,7 @@
         </div>
         <div class="right">
           <div class="search" @click="init">
-            <div class="account">{{ account }}</div>
+            <div class="account">{{ account | short }}</div>
           </div>
         </div>
       </div>
@@ -80,8 +80,8 @@
             </van-cell>
           </div>
           <div class="foot">
-            <div class="en" @click="setLang('en')">English</div>
-            <div class="zn" @click="setLang('zh_CN')">繁體中文</div>
+            <div :class="['en', currentLang === 'en' ? 'active' : '']" @click="setLang('en')">English</div>
+            <div :class="['zn', currentLang === 'zh_CN' ? 'active' : '' ]" @click="setLang('zh_CN')">繁體中文</div>
           </div>
         </div>
       </div>
@@ -110,9 +110,26 @@ export default {
   },
   watch: {},
   computed: {
-    account() {
-      return this.$store.state.account;
+    currentLang() {
+      return this.$store.state.common.lang || 'en'
     },
+    account() {
+      if(this.$store.state.account) {
+        return this.$store.state.account;
+      }else {
+        const currentLang = this.$store.state.common.lang || 'en'
+        const {accountStrDefault} = this.$store.state
+        return accountStrDefault[currentLang]
+      }
+    },
+  },
+  filters: {
+    short: function(value) {
+      if(value.length < 9) {
+        return value
+      }
+      return value.substr(0, 4) + "..." + value.substr(-4);
+    }
   },
   methods: {
     async init() {
@@ -275,12 +292,18 @@ export default {
           height: 25px;
         }
         .en {
-          background: #1c96d4;
           color: #FFFFFF;
+          background: #535a70;
+          &.active {
+            background: #1c96d4;
+          }
         }
         .zn {
           background: #535a70;
           color: #FFFFFF;
+          &.active {
+            background: #1c96d4;
+          }
         }
       }
     }

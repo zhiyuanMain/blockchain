@@ -34,5 +34,8 @@ export default {
         &.warn {
             background-image: url("~@/assets/images/cp/cpbtn-bg-warn.png");
         }
+        &.disable {
+            background-image: url("~@/assets/images/cp/cpbtn-bg-disable.png");
+        }
     }
 </style>
