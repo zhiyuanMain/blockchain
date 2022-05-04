@@ -341,9 +341,9 @@ export default {
 </script>
 <style lang="less">
 .exchange-list {
-  // background: #f4f8fb;
   min-height: 100vh;
   padding-bottom: 50px;
+  margin-bottom: 30px;
 
   // margin-bottom: 30px;
   .banner {

@@ -83,7 +83,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .DAO {
-  height: 100vh;
+  // height: 100vh;
   -webkit-overflow-scrolling: touch;
   background: url("~@/assets/images/home/new/app_bg.png") repeat-y;
   background-size: 100%;

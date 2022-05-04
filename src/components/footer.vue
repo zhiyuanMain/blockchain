@@ -60,7 +60,7 @@ export default {
         active: require("../assets/images/home/tab_04@2x.png"),
       },
       icon5: {
-        inactive: require("../assets/images/home/tab_05.png"),
+        inactive: require("../assets/images/home/tab_05@2x.png"),
         active: require("../assets/images/home/tab_05@2x.png"),
       },
     };
@@ -71,5 +71,22 @@ export default {
 </script>
 <style lang="less">
 .m-footer {
+  .van-tabbar {
+    background-color: #1a1f29;
+    max-width: 375px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .van-tabbar-item {
+    margin: 4px 10px;
+    color: #fff;
+    border-radius: 6px;
+  }
+  .van-tabbar-item--active {
+      background-color: #2b3342;
+  }
+  .van-hairline--top-bottom:after {
+    border: none;
+  }
 }
 </style>

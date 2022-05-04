@@ -338,9 +338,12 @@ export default {
     margin: 0px 15px;
     margin-top: -60px;
     .list ul {
-      background: url("~@/assets/images/home/new/home_ul_bg.png") no-repeat;
-      background-size: 100% 100%;
+      // background: url("~@/assets/images/home/new/home_ul_bg.png") no-repeat;
+      // background-size: 100% 100%;
+      background: #28344C;
+      opacity: 0.9;
       padding: 12px 8px;
+      border-radius: 6px;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -350,7 +353,7 @@ export default {
         background: #323F59;
         background: url("~@/assets/images/home/new/home_li_bg.png") no-repeat;
         background-size: 100% 100%;
-        box-shadow: 0px 0px 1px 2px #15618C;
+        border: 1px solid #15618C;
         border-radius: 6px;
         padding: 16px 0;
         .item-top {

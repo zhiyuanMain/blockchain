@@ -411,6 +411,11 @@ export default {
         backgroundColor: '#1e2637',
         tooltip: {
           trigger: "axis",
+          backgroundColor: 'rgba(30,38,55, 0.7)',
+          borderWidth: 0,
+          textStyle: {
+            color: '#fff'
+          }
         },
         legend: {
           // data: ["分", "时", "日", "月"],

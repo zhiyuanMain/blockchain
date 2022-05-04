@@ -80,7 +80,7 @@
             </van-cell>
           </div>
           <div class="foot">
-            <div class="en" @click="setLang('en')">english</div>
+            <div class="en" @click="setLang('en')">English</div>
             <div class="zn" @click="setLang('zh_CN')">繁體中文</div>
           </div>
         </div>
@@ -271,20 +271,15 @@ export default {
         font-size: 13px;
         margin-left: 31px;
         > div {
-          width: 55px;
+          width: 65px;
           height: 25px;
         }
         .en {
-          background: url("~@/assets/images/common/new/en.png") no-repeat center
-            center;
-          background-size: 100% 100%;
+          background: #1c96d4;
           color: #FFFFFF;
         }
         .zn {
-          background: url("~@/assets/images/common/new/zh.png") no-repeat center
-            center;
-          background-size: 100% 100%;
-
+          background: #535a70;
           color: #FFFFFF;
         }
       }
