@@ -37,6 +37,7 @@ import {
   Empty,
   Tabbar,
   TabbarItem,
+  Switch
 } from 'vant'
 import MHeader from './m-header.vue'
 import NavHeader from './nav-header.vue'
@@ -91,3 +92,4 @@ Vue.use(Empty)
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(Toast);
+Vue.use(Switch);

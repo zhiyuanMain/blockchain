@@ -79,9 +79,16 @@
               </template>
             </van-cell>
           </div>
+          
           <div class="foot">
-            <div :class="['en', currentLang === 'en' ? 'active' : '']" @click="setLang('en')">English</div>
-            <div :class="['zn', currentLang === 'zh_CN' ? 'active' : '' ]" @click="setLang('zh_CN')">繁體中文</div>
+            <div class="theme">
+              <span>{{$t("common.themeChange")}}</span><van-switch active-color="#1c96d4" v-model="checked"  @click.stop="" @change="changeTheme"  />
+            </div>
+            <div class="language">
+              <div :class="['en', currentLang === 'en' ? 'active' : '']" @click="setLang('en')">English</div>
+              <div :class="['zn', currentLang === 'zh_CN' ? 'active' : '' ]" @click="setLang('zh_CN')">繁體中文</div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -106,6 +113,7 @@ export default {
       web3: null,
       currencyKind: "BSC",
       isFlag: false,
+      checked: true
     };
   },
   watch: {},
@@ -147,6 +155,9 @@ export default {
     setLang(value) {
       this.show = false;
       $utils.setLanguage(value);
+    },
+    changeTheme(checked){
+      console.log(11111, checked)
     },
     goTo() {
       this.show = false;
@@ -280,31 +291,47 @@ export default {
         }
       }
       .foot {
-        display: flex;
-        align-items: center;
-        text-align: center;
         line-height: 25px;
-        margin-top: 240px;
+        margin-top: 215px;
         font-size: 13px;
-        margin-left: 31px;
-        > div {
-          width: 65px;
-          height: 25px;
-        }
-        .en {
+        margin-left: 21px;
+        .theme{
+          font-size: 16px;
           color: #FFFFFF;
-          background: #535a70;
-          &.active {
-            background: #1c96d4;
+          line-height: 21px;
+          display: flex;
+          align-items: center;
+          .van-switch{
+            font-size: 16px;
+            margin-left: 9.5px;
+          }
+          margin-bottom: 18px;
+        }
+        .language{
+          display: flex;
+          align-items: center;
+          text-align: center;
+          > div {
+            width: 65px;
+            height: 25px;
+          }
+          .en {
+            color: #FFFFFF;
+            background: #535a70;
+            &.active {
+              background: #1c96d4;
+            }
+          }
+          .zn {
+            background: #535a70;
+            color: #FFFFFF;
+            &.active {
+              background: #1c96d4;
+            }
           }
         }
-        .zn {
-          background: #535a70;
-          color: #FFFFFF;
-          &.active {
-            background: #1c96d4;
-          }
-        }
+
+      
       }
     }
   }
