@@ -137,7 +137,7 @@
       </div>
       <!-- 兑换记录 -->
       <div class="exchange-record mt-20 mb-30">
-        <div class="flex between mb-5">
+        <div class="flex between mb-10">
           <div class="title">{{ $t("exchange.exchange-record") }}</div>
           <div class="img-top">
             <img
@@ -154,7 +154,7 @@
           </div>
         </div>
         <div
-          class="flex pl-10 pr-10 exchange-record-box between"
+          class="flex pl-10 pr-10 mb-5 exchange-record-box between"
           v-for="(item, i) in logs"
           :key="i"
         >
@@ -181,7 +181,7 @@
             alt=""
           />
           <div>
-            <div class="top flex right">{{ item.hash | short }}</div>
+            <div class="top flex right top-white">{{ item.hash | short }}</div>
             <div class="center-box flex right" v-if="item.ctype == 'mtc'">
               <img src="@/assets/images/change/icon_02.png" alt="" /><span
                 >BSC USDT</span
@@ -922,7 +922,7 @@ export default {
       }
 
       .exchange-record-box {
-        background: #f2f3f7;
+        background: #1e2637;
         border-radius: 4px;
         padding-top: 7px;
         padding-bottom: 7px;
@@ -938,19 +938,22 @@ export default {
       .top {
         font-size: 10px;
         font-weight: 400;
-        color: #888888;
+        color: #B3B3B3;
         line-height: 19px;
         margin-bottom: 7px;
+        &-white {
+          color: #fff;
+        }
 
         span:last-child {
-          color: #22d3e5;
+          color: #E2C253;
           font-size: 10px;
         }
       }
 
       .center-box {
         // margin-bottom: 8px;
-        color: #555555;
+        color: #fff;
         vertical-align: middle;
         display: flex;
         align-items: center;
@@ -962,7 +965,7 @@ export default {
 
         span {
           font-size: 11px;
-          color: #555555;
+          color: #fff;
           line-height: 19px;
           margin-left: 3px;
         }
@@ -972,7 +975,7 @@ export default {
         font-size: 10px;
         font-family: Source Han Sans CN;
         font-weight: 500;
-        color: #555555;
+        color: #fff;
         line-height: 19px;
       }
 
